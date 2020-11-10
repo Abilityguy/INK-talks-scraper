@@ -7,9 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 
-"""
-Extracts talk data from the talk URL page.
-"""
+# Extracts talk data from the talk URL page.
 def TalkPageDataExtractor(talkSoup):
     description = ''
     tagList = list()
@@ -37,13 +35,11 @@ def TalkPageDataExtractor(talkSoup):
 
     return (views, description, tagList, recommendedVideoList)
 
-"""
-Extracts talk data from the talks page of the INK website.
-
-Assumptions:
-Expected format of talk URL: http://www.inktalks.com/discover/{talk-Id}/..
-talkId is extracted from the talk URL assuming this format
-"""
+# Extracts talk data from the talks page of the INK website.
+#
+# Assumptions:
+# Expected format of talk URL: http://www.inktalks.com/discover/{talk-Id}/..
+# talkId is extracted from the talk URL assuming this format
 def SearchPageTalkDataExtractor(talkDiv):
     speakersList = list()
 
@@ -63,7 +59,7 @@ def SearchPageTalkDataExtractor(talkDiv):
 
 def SaveData(data, filename):
     df = pd.DataFrame(data, columns = ['Id', 'Title', 'Duration', 'Speakers', \
-                                        'tags', 'Views', 'Recommended Videos', \
+                                        'Tags', 'Views', 'Recommended Videos', \
                                         'Description', 'Talk URL', \
                                         'Talk Thumbnail URL'])
     df.to_csv(filename, index=False)
